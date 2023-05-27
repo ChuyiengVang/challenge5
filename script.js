@@ -14,7 +14,7 @@ $(function () {
   savebtnEl.on('click', function () {
     //"this" refers to the timebox the saved button was clicked in
     var description = $(this).children().eq(1).val();
-    var time = $(this).children().eq(0);
+    var time = $(this).children().eq(0).contents();
 
     localStorage.setItem(time, description);
   })
@@ -28,10 +28,24 @@ $(function () {
   //
 
   //WRITE IF STATEMENTS
-  var currentTime = dayjs().format('h[:]mm');
+  //LOOP
+  var currentTime = dayjs().format('h');
   var pastEl = $('textarea').addClass('past');
   var presentEl = $('textarea').addClass('present');
   var futureEl = $('textarea').addClass('future');
+  
+  console.log(currentTime)
+  //class timeblock select as element to be looped
+  $('.timeblock').each(function () {
+    if (currentTime === $(this).parent().attr("id")) {
+      presentEl;
+    } else if (currentTime < $(this).parent().attr("id")) {
+      pastEl;
+    } else {
+      futureEl
+    }
+   console.log(currentTime);
+  });
 
   console.log();
 
@@ -44,7 +58,7 @@ $(function () {
   currentTime = dayjs().format('h[:]mm');
 
   console.log();
-  // TODO: Add code to display t.he current date in the header of the page.
+  // TODO: Add code to display the current date in the header of the page.
 
   //Vanilla Javascript
   //var dateEl = document.getElementById("currentDay");
