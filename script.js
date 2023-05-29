@@ -12,9 +12,11 @@ $(function () {
   var savebtnEl = $('.saveBtn')
 
   savebtnEl.on('click', function () {
-    //"this" refers to the timebox the saved button was clicked in
-    var description = $(this).children().eq(1).val();
-    var time = $(this).children().eq(0).contents();
+    //"this" refers to the the individual div timebox the saved button was clicked in 
+    //siblings(class) finds siblings with the selected class
+    var description = $(this).siblings('.description').val();
+
+    var time = $(this).parent().attr('id');
 
     localStorage.setItem(time, description);
   })
@@ -30,21 +32,30 @@ $(function () {
   //WRITE IF STATEMENTS
   //LOOP
   var currentTime = dayjs().format('h');
-  var pastEl = $('textarea').addClass('past');
-  var presentEl = $('textarea').addClass('present');
-  var futureEl = $('textarea').addClass('future');
-  
+  //var past = $('textarea').addClass('past');
+  //var present = $('textarea').addClass('present');
+  //var future = $('textarea').addClass('future');
+  //var timeBlock = $('.time-block');
   console.log(currentTime)
-  //class timeblock select as element to be looped
-  $('.timeblock').each(function () {
-    if (currentTime === $(this).parent().attr("id")) {
-      presentEl;
-    } else if (currentTime < $(this).parent().attr("id")) {
-      pastEl;
+  //class time-block select as element class to be looped
+  $('.time-block').each(function () {
+
+    if ($(this).parent().attr("id") === currentTime) {
+        
+        $('textarea').addClass('present');
+        
+    } else if ($(this).parent().attr("id") > currentTime) {
+      
+        $('textarea').addclass('past');
+
     } else {
-      futureEl
+
+        $('textarea').addclass('future');
+
     }
-   console.log(currentTime);
+
+   console.log(timeBlock);
+
   });
 
   console.log();
