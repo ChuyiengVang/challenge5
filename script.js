@@ -32,43 +32,48 @@ $(function () {
   //WRITE IF STATEMENTS
   //LOOP
   var currentTime = dayjs().format('h');
+  console.log(currentTime)
   //var past = $('textarea').addClass('past');
   //var present = $('textarea').addClass('present');
   //var future = $('textarea').addClass('future');
   //var timeBlock = $('.time-block');
-  console.log(currentTime)
+
   //class time-block select as element class to be looped
   $('.time-block').each(function () {
 
     if ($(this).parent().attr("id") === currentTime) {
-        
-        $('textarea').addClass('present');
+
+        $(this).removeClass('past');
+        $(this).removeClass('future');
+        $(this).addClass('present');
         
     } else if ($(this).parent().attr("id") > currentTime) {
       
-        $('textarea').addclass('past');
+        $(this).removeClass('present');
+        $(this).removeClass('future');      
+        $(this).addClass('past');
 
     } else {
 
-        $('textarea').addclass('future');
+        $(this).removeClass('past');
+        $(this).removeClass('present');
+        $(this).addClass('future');
 
     }
 
-   console.log(timeBlock);
+   console.log();
 
   });
-
-  console.log();
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
 
-  var inputEL = $('.description');
-  currentTime = dayjs().format('h[:]mm');
+  var hour9 = localStorage.getItem('9');
 
-  console.log();
+  console.log(hour9);
+ 
   // TODO: Add code to display the current date in the header of the page.
 
   //Vanilla Javascript
