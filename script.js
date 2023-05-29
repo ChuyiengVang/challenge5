@@ -70,9 +70,11 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
 
-  var hour9 = localStorage.getItem('9');
+  for (var i = 0; i < localStorage.length; i++){
+    $('.hour-[i] textarea').val(localStorage.getItem('hour-[i]'));
+}
 
-  console.log(hour9);
+console.log();
  
   // TODO: Add code to display the current date in the header of the page.
 
