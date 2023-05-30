@@ -28,26 +28,24 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
-
   //WRITE IF STATEMENTS
   //LOOP
-  var currentTime = dayjs().format('h');
+
+  var currentTime = dayjs().hour();
   console.log(currentTime)
-  //var past = $('textarea').addClass('past');
-  //var present = $('textarea').addClass('present');
-  //var future = $('textarea').addClass('future');
-  //var timeBlock = $('.time-block');
 
   //class time-block select as element class to be looped
   $('.time-block').each(function () {
+    //split() turns class hour-9 into substring
+    var timeBlockHour = $(this).attr("id").split('hour-')[1];
 
-    if ($(this).parent().attr("id") === currentTime) {
+    if (timeBlockHour == currentTime) {
 
         $(this).removeClass('past');
         $(this).removeClass('future');
         $(this).addClass('present');
         
-    } else if ($(this).parent().attr("id") > currentTime) {
+    } else if (timeBlockHour < currentTime) {
       
         $(this).removeClass('present');
         $(this).removeClass('future');      
@@ -61,7 +59,7 @@ $(function () {
 
     }
 
-   console.log();
+   console.log(timeBlockHour);
 
   });
 
@@ -79,15 +77,15 @@ console.log();
   // TODO: Add code to display the current date in the header of the page.
 
   //Vanilla Javascript
-  //var dateEl = document.getElementById("currentDay");
-  //var realDate = dayjs().format('dddd, MMMM D');
-  //var ordinal = realDate + ( [,'st','nd','rd'][/1?.$/.exec(realDate)] || 'th' );
-  //dateEl.textContent = ordinal;
+  var dateEl = document.getElementById("currentDay");
+  var realDate = dayjs().format('dddd, MMMM D');
+  var ordinal = realDate + ( [,'st','nd','rd'][/1?.$/.exec(realDate)] || 'th' );
+  dateEl.textContent = ordinal;
 
-  var today = dayjs();
-  $('#currentDay').text(
-    today.format('dddd, MMMM D')
-  )
+  //var today = dayjs();
+  //$('#currentDay').text(
+   // today.format('dddd, MMMM D')
+ // )
 
   console.log();
 });
